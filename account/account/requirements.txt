@@ -1,0 +1,9 @@
+django
+gunicorn
+django-allauth==0.54.0
+dj-rest-auth
+djangorestframework
+djangorestframework-simplejwt
+django-cors-headers
+djoser
+

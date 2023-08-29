@@ -1,0 +1,38 @@
+services:
+    book:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        # env_file:
+        #     - ./envs/development.env
+        
+        volumes:
+            - ./:/app
+            - /store/book/media:/app/media
+            - /store/book/static:/app/static
+        
+        ports:
+            - 8001:8001
+          
+
+        command:
+            gunicorn book.wsgi:application --reload --bind 0.0.0.0:8001
+        
+    
+    # account-database:
+    #     image: postgres:alpine
+
+    #     env_file:
+    #         - ./envs/development.db.env
+
+    #     volumes: 
+    #       -  account-volume-db:/var/lib/postgresql/data:rw
+
+volumes:
+    book-static:
+    book-media:
+    book-volume-db:
+
+networks:
+    default:
+            name: shop
